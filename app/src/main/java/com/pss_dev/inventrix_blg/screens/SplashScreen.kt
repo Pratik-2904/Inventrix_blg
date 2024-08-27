@@ -32,6 +32,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.pss_dev.inventrix_blg.R
@@ -42,11 +43,11 @@ import kotlinx.coroutines.delay
 @Composable
 fun SplashScreen(
     navController: NavHostController = rememberNavController(),
+    authViewModel: AuthViewModel = hiltViewModel(),
 ) {
-    val viewModel: AuthViewModel = AuthViewModel()
     val context: Context = LocalContext.current
-    val isLoggedIn = viewModel.isLoggedIn()
     val scale = remember { androidx.compose.animation.core.Animatable(0f) }
+    val isLoggedIn = authViewModel.checkIfUserIsLoggedIn()
 
     // Start the scale animation
     LaunchedEffect(Unit) {
@@ -121,10 +122,12 @@ fun SplashScreen(
         }
     }
 
-    LaunchedEffect(isLoggedIn) {
+    LaunchedEffect(
+        isLoggedIn
+    ) {
         delay(3000L)
         if (isLoggedIn) {
-            Toast.makeText(context, "Welcome ${viewModel.getusername()}", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Welcome ${authViewModel.loggedInUsername}", Toast.LENGTH_LONG).show()
             navController.navigate("home") {
                 popUpTo("splash") { inclusive = true }
             }

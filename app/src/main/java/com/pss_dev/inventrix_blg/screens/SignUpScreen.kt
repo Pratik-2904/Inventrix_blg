@@ -1,7 +1,5 @@
-package com.example.stockinvoice.screens.signInScreen
+package com.pss_dev.inventrix_blg.screens
 
-import android.content.res.Configuration
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -27,7 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -44,24 +42,22 @@ import com.pss_dev.inventrix_blg.widget.HeadingTextComponent
 import com.pss_dev.inventrix_blg.widget.NormalTextComponent
 import com.pss_dev.inventrix_blg.widget.PasswordTextField
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun SignInScreen(
+fun SignUpPage(
     navController: NavController = rememberNavController(),
-    authviewModel: AuthViewModel = hiltViewModel()
+    authViewModel: AuthViewModel = hiltViewModel()
 ) {
-
-    //Todo authentication validation
-
+    val firstNameState = rememberSaveable { mutableStateOf("") }
+    val lastNameState = rememberSaveable { mutableStateOf("") }
     val emailState = rememberSaveable { mutableStateOf("") }
     val passwordState = rememberSaveable { mutableStateOf("") }
-
 
     val context = LocalContext.current
 
     val themeBackGroundColor = MaterialTheme.colorScheme.background
     val themeSurfaceColor = MaterialTheme.colorScheme.surface
     val themeTextColor = MaterialTheme.colorScheme.onBackground
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -80,10 +76,26 @@ fun SignInScreen(
                     themeTextColor = themeTextColor,
                 )
                 HeadingTextComponent(
-                    value = stringResource(id = R.string.welcome),
+                    value = stringResource(id = R.string.create_account),
                     themeTextColor = themeTextColor,
                 )
                 Spacer(modifier = Modifier.height(10.dp))
+                CustomTextField(
+                    labelValue = "First Name",
+                    value = firstNameState,
+                    icon = Icons.Default.Person,
+                    themeTextColor = themeTextColor,
+                    themeSurfaceColor = themeSurfaceColor
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                CustomTextField(
+                    labelValue = "Last Name",
+                    value = lastNameState,
+                    icon = Icons.Default.Person,
+                    themeTextColor = themeTextColor,
+                    themeSurfaceColor = themeSurfaceColor
+                )
+                Spacer(modifier = Modifier.height(8.dp))
                 CustomTextField(
                     labelValue = "Email",
                     value = emailState,
@@ -101,21 +113,19 @@ fun SignInScreen(
                 )
                 Spacer(modifier = Modifier.heightIn(20.dp))
                 Buttoncomposable(
-                    value = "LogIn",
+                    value = "Register",
                     themebackgroundColor = themeBackGroundColor,
                     themeTextColor = themeTextColor,
                     themeSurfaceColor = themeSurfaceColor,
                     onClick = {
-                        //Todo add login logic
-                        authviewModel.authenticate(
+                        authViewModel.signup(
+                            firstNameState.value,
+                            lastNameState.value,
                             emailState.value,
-                            passwordState.value
+                            passwordState.value,
+                            context
                         )
-                        val sucess = authviewModel.checkIfUserIsLoggedIn()
-                        if (sucess) {
-                            Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
-                            navController.navigate(route = Screens.home.route)
-                        }
+                        navController.navigate(route = Screens.login.route)
                     }
                 )
 
@@ -149,21 +159,13 @@ fun SignInScreen(
                     themebackgroundColor = themeBackGroundColor,
                     themeTextColor = themeTextColor,
                     themeSurfaceColor = themeSurfaceColor,
-                    string = "Don't have an account? ",
-                    clickableString = "SignUp",
+                    string = "Already have an account? ",
+                    clickableString = "LogIn",
                     onTextSelected = {
-//                        TOdo navigate to signUp
-                        navController.navigate(route = Screens.register.route)
+                        navController.navigate(route = Screens.login.route)
                     }
                 )
-
             }
-
         }
-
     }
-
 }
-
-
-

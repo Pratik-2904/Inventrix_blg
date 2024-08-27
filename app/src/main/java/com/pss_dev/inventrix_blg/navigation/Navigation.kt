@@ -6,20 +6,21 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.stockinvoice.screens.signInScreen.LogInScreen
+import com.example.stockinvoice.screens.signInScreen.SignInScreen
 import com.pss_dev.inventrix_blg.screens.HomeScreen
 import com.pss_dev.inventrix_blg.screens.SplashScreen
+import com.pss_dev.inventrix_blg.viewModel.AuthViewModel
 
 @Composable
-fun Navigation(navController: NavHostController ) {
+fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel ) {
     val startDestination = Screens.splash.route
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(route = Screens.splash.route) {
-            SplashScreen(navController)
+            SplashScreen(navController,authviewmodel)
         }
         composable(route = Screens.home.route) {
-            HomeScreen()
+            HomeScreen(authviewmodel)
         }
         composable(route = Screens.bills.route) {
             //Todo Add Bills Screen
@@ -34,17 +35,13 @@ fun Navigation(navController: NavHostController ) {
             //Todo Add More Screen
         }
         composable(route = Screens.login.route) {
-            //Todo Add Login Screen
-            LogInScreen(navController)
+            SignInScreen(navController,authviewmodel)
         }
         composable(route = Screens.register.route) {
             //Todo Add Register Screen
         }
         composable(route = Screens.terms.route) {
             //Todo Add Terms Screen
-        }
-        composable(route = Screens.register.route){
-            //Todo Add Register Screen
         }
     }
 

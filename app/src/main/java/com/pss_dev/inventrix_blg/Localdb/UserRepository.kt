@@ -21,4 +21,17 @@ class UserRepository @Inject constructor(private val userdao: UserDao) {
     suspend fun updateUser(user: User) {
         return userdao.updateUser(user = user)
     }
+
+    suspend fun getLoggedInUser(): User? {
+        return userdao.getLoggedInUser()
+    }
+
+    suspend fun authenticateUser(username: String, password: String): User? {
+        return userdao.authenticateUser(username, password)
+    }
+
+    suspend fun setLoginStatus(userId: Int, status: Boolean) {
+        userdao.updateLoginStatus(userId, status)
+    }
+
 }

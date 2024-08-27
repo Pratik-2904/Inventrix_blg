@@ -98,6 +98,13 @@ dependencies {
 
     //kotlin extensions and Coroutine Support
     implementation("androidx.room:room-ktx:2.6.1")
+
+    // Hilt ViewModel dependencies
+    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    kapt ("androidx.hilt:hilt-compiler:1.2.0")
+
+    // Hilt for Jetpack Compose
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
 }
 //allow references to generated code
 kapt {

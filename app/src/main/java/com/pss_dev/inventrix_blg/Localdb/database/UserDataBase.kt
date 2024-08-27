@@ -11,6 +11,7 @@ import com.pss_dev.inventrix_blg.data.User
     //Todo how to get export schema
     exportSchema = true
 )
+//@TypeConverters(Converters::class)
 abstract class UserDataBase : RoomDatabase() {
     abstract fun userdao(): UserDao
 

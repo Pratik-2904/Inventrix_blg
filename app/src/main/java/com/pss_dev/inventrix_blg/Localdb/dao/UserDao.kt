@@ -20,6 +20,19 @@ interface UserDao {
     @Update
     suspend fun updateUser(user: User)
 
-    @Query("SELECT * FROM users")
-    suspend fun getAllUsers() : Flow<List<User>>
+    @Query("SELECT * FROM users WHERE id = :id")
+    suspend fun getUserById(id: Int): User?
+
+//    @Query("SELECT * FROM users")
+//    suspend fun getAllUsers() : Flow<List<User>>
+
+    @Query("SELECT * FROM users WHERE isLoggedIn = 1 LIMIT 1")
+    suspend fun getLoggedInUser(): User?
+
+    @Query("UPDATE users SET isLoggedIn = :status WHERE id = :userId")
+    suspend fun updateLoginStatus(userId: Int, status: Boolean)
+
+    @Query("SELECT * FROM users WHERE username = :username AND password = :password LIMIT 1")
+    suspend fun authenticateUser(username: String, password: String): User?
+
 }
