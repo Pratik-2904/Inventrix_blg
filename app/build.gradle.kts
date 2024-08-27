@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+    id("androidx.room")
 }
 
 android {
@@ -45,6 +48,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
 }
 
 composeCompiler {
@@ -74,4 +80,26 @@ dependencies {
 
     //icons Extended
     implementation(libs.androidx.material.icons.extended)
+
+    //dagger hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+    //lifecycle
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
+
+    //local database
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    //kotlin extensions and Coroutine Support
+    implementation("androidx.room:room-ktx:2.6.1")
+}
+//allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
