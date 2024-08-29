@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(private val userdao: UserDao) {
-    suspend fun getAllUsers(): Flow<List<User>> {
-        return userdao.getAllUsers()
-    }
+//    suspend fun getAllUsers(): Flow<List<User>> {
+//        return userdao.getAllUsers()
+//    }
 
     suspend fun insertUser(user: User) {
         return userdao.insertUser(user = user)
