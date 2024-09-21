@@ -107,5 +107,7 @@ dependencies {
     // Hilt for Jetpack Compose
     implementation(libs.androidx.hilt.navigation.compose)
 
+    //animations
+
 }
 

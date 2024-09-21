@@ -1,14 +1,19 @@
 package com.pss_dev.inventrix_blg.navigation
 
+import android.transition.Transition
 import android.util.Log
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.stockinvoice.screens.signInScreen.SignInScreen
 import com.pss_dev.inventrix_blg.screens.HomeScreen
+import com.pss_dev.inventrix_blg.screens.SignUpScreen
 import com.pss_dev.inventrix_blg.screens.SplashScreen
 import com.pss_dev.inventrix_blg.viewModel.AuthViewModel
 
@@ -17,7 +22,10 @@ fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel = 
     val startDestination = Screens.splash.route
 
     NavHost(navController = navController, startDestination = startDestination) {
-        composable(route = Screens.splash.route) {
+        composable(route = Screens.splash.route,
+            exitTransition = {
+                slideOutHorizontally() + fadeOut()
+            }) {
             SplashScreen(navController,authviewmodel)
         }
         composable(route = Screens.home.route) {
@@ -39,7 +47,7 @@ fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel = 
             SignInScreen(navController,authviewmodel)
         }
         composable(route = Screens.register.route) {
-            //Todo Add Register Screen
+            SignUpScreen(navController,authviewmodel)
         }
         composable(route = Screens.terms.route) {
             //Todo Add Terms Screen
