@@ -2,6 +2,7 @@ package com.pss_dev.inventrix_blg.navigation
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -12,7 +13,7 @@ import com.pss_dev.inventrix_blg.screens.SplashScreen
 import com.pss_dev.inventrix_blg.viewModel.AuthViewModel
 
 @Composable
-fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel ) {
+fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel = hiltViewModel() ) {
     val startDestination = Screens.splash.route
 
     NavHost(navController = navController, startDestination = startDestination) {

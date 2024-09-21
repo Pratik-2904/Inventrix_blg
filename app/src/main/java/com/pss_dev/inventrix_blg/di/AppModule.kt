@@ -1,4 +1,4 @@
-package com.pss_dev.inventrix_blg.DI
+package com.pss_dev.inventrix_blg.di
 
 import android.content.Context
 import androidx.room.Room

@@ -25,6 +25,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -122,7 +123,7 @@ fun CustomTextField(
             keyboardActions = KeyboardActions(
                 onDone = { keyboardAction?.hide() }
             ),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
+            colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = themeTextColor,
                 focusedLabelColor = themeTextColor,
                 cursorColor = themeTextColor,
@@ -155,7 +156,7 @@ fun PasswordTextField(
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Password
         ),
-        colors = TextFieldDefaults.outlinedTextFieldColors(
+        colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = themeTextColor,
             focusedLabelColor = themeTextColor,
             cursorColor = themeTextColor,
