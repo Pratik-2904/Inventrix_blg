@@ -105,5 +105,10 @@ dependencies {
 
     // Hilt for Jetpack Compose
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+//for google sign in
+    implementation ("com.google.android.gms:play-services-auth:21.2.0")
+    //network calls
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 }
 
