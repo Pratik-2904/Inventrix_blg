@@ -6,7 +6,7 @@ import com.pss_dev.inventrix_blg.navigation.Navigation
 import com.pss_dev.inventrix_blg.viewModel.AuthViewModel
 
 @Composable
-fun MyApp(authviewModel: AuthViewModel) {
+fun MyApp(authViewModel: AuthViewModel) {
     val navController = rememberNavController()
-    Navigation(navController = navController, authviewmodel = authviewModel)
+    Navigation(navController = navController, authviewmodel = authViewModel)
 }

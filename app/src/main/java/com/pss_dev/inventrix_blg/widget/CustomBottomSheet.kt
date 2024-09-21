@@ -38,11 +38,9 @@ fun CustomBottomSheet(
         tonalElevation = BottomSheetDefaults.Elevation,
         shape = BottomSheetDefaults.ExpandedShape,
         scrimColor = BottomSheetDefaults.ScrimColor,
-        windowInsets = BottomSheetDefaults.windowInsets,
         properties = ModalBottomSheetProperties(
-            shouldDismissOnBackPress = true,
-            isFocusable = true,
-            securePolicy = SecureFlagPolicy.SecureOn
+            securePolicy = SecureFlagPolicy.SecureOn,
+            shouldDismissOnBackPress = true
         )
     ) {
         if (title != null) {

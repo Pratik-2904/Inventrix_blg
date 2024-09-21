@@ -57,9 +57,7 @@ fun HomeScreen(
     val companyName = remember {
         mutableStateOf("ShivShakti Enterprises")
     }
-    val businessDetailsBottomSheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = false
-    )
+    val businessDetailsBottomSheetState = rememberModalBottomSheetState()
 
     val bussinessInfoSheetState = remember {
         mutableStateOf(false)
@@ -99,15 +97,17 @@ fun HomeScreen(
                 .fillMaxSize()
                 .background(Color.Transparent)
         ) {
-            CustomBottomSheet(
-                sheetState = businessDetailsBottomSheetState,
-                title = "Business Details",
-                onDismissRequest = {
-                    bussinessInfoSheetState.value = false
+            if (bussinessInfoSheetState.value) {
+                CustomBottomSheet(
+                    sheetState = businessDetailsBottomSheetState,
+                    title = "Business Details",
+                    onDismissRequest = {
+                        bussinessInfoSheetState.value = false
+                    }
+                ) {
+                    // Content of the bottom sheet
+                    CompanyInfoBox()
                 }
-            ) {
-                // Content of the bottom sheet
-                CompanyInfoBox()
             }
         }
     }
@@ -122,7 +122,7 @@ fun CompanyInfoBox(modifier: Modifier = Modifier, title: String? = null) {
             .fillMaxWidth()
             .heightIn(30.dp),
         shape = RoundedCornerShape(10.dp),
-        color = MaterialTheme.colorScheme.secondaryContainer
+        color = MaterialTheme.colorScheme.background
     ) {
         Row(
             modifier = Modifier

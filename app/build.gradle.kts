@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
-//    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("androidx.room")
     id("com.google.devtools.ksp")
@@ -20,6 +19,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -52,6 +52,7 @@ android {
     room {
         schemaDirectory("$projectDir/schemas")
     }
+
 }
 
 composeCompiler {
@@ -84,31 +85,29 @@ dependencies {
 
     //dagger hilt
     implementation(libs.hilt.android)
-    ksp("com.google.dagger:dagger-compiler:2.48")
+//    ksp("com.google.dagger:hilt-compiler:2.52")
+    ksp(libs.hilt.android.compiler)
 
     //lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
-    ksp("androidx.hilt:hilt-compiler:1.2.0")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+//    ksp("androidx.hilt:hilt-compiler:1.2.0")
 
     //local database
-    implementation("androidx.room:room-runtime:2.6.1")
-//    annotationProcessor("androidx.room:room-compiler:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
 
     //kotlin extensions and Coroutine Support
-    implementation("androidx.room:room-ktx:2.6.1")
+    implementation(libs.androidx.room.ktx)
 
     // Hilt ViewModel dependencies
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+//    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
 
     // Hilt for Jetpack Compose
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-//for google sign in
-    implementation ("com.google.android.gms:play-services-auth:21.2.0")
-    //network calls
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    //animations
+
 }
 

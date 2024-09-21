@@ -1,6 +1,7 @@
 package com.pss_dev.inventrix_blg.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,8 +24,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -43,7 +48,7 @@ import com.pss_dev.inventrix_blg.widget.NormalTextComponent
 import com.pss_dev.inventrix_blg.widget.PasswordTextField
 
 @Composable
-fun SignUpPage(
+fun SignUpScreen(
     navController: NavController = rememberNavController(),
     authViewModel: AuthViewModel = hiltViewModel()
 ) {
@@ -56,13 +61,23 @@ fun SignUpPage(
 
     val themeBackGroundColor = MaterialTheme.colorScheme.background
     val themeSurfaceColor = MaterialTheme.colorScheme.surface
-    val themeTextColor = MaterialTheme.colorScheme.onBackground
+    val themeTextColor = MaterialTheme.colorScheme.primary
+
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager: FocusManager = LocalFocusManager.current
 
     Surface(
         modifier = Modifier
             .fillMaxSize()
             .background(themeBackGroundColor)
-            .padding(28.dp),
+            .padding(28.dp)
+            .pointerInput(Unit) {
+                // Handle clicks on the box
+                this.detectTapGestures(onTap = {
+                    focusManager.clearFocus()
+                    keyboardController?.hide()
+                })
+            },
     ) {
         LazyColumn(
             modifier = Modifier
@@ -153,12 +168,10 @@ fun SignUpPage(
                     )
                 }
 
-                Spacer(modifier = Modifier.height(90.dp))
+                Spacer(modifier = Modifier.height(50.dp))
 
                 ClickableLogInTextComponent(
-                    themebackgroundColor = themeBackGroundColor,
                     themeTextColor = themeTextColor,
-                    themeSurfaceColor = themeSurfaceColor,
                     string = "Already have an account? ",
                     clickableString = "LogIn",
                     onTextSelected = {

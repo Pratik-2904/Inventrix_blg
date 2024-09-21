@@ -3,6 +3,8 @@ package com.example.stockinvoice.screens.signInScreen
 import android.content.res.Configuration
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,7 +27,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,10 +57,11 @@ fun SignInScreen(
 ) {
 
     //Todo authentication validation
-
+    val keyboardController = LocalSoftwareKeyboardController.current
     val emailState = rememberSaveable { mutableStateOf("") }
     val passwordState = rememberSaveable { mutableStateOf("") }
 
+    val focusManager = LocalFocusManager.current
 
     val context = LocalContext.current
 
@@ -66,7 +72,14 @@ fun SignInScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(themeBackGroundColor)
-            .padding(28.dp),
+            .padding(28.dp)
+            .pointerInput(Unit) {
+                // Handle clicks on the box
+                this.detectTapGestures(onTap = {
+                    focusManager.clearFocus()
+                    keyboardController?.hide()
+                })
+            }
     ) {
         LazyColumn(
             modifier = Modifier
@@ -89,7 +102,9 @@ fun SignInScreen(
                     value = emailState,
                     icon = Icons.Default.Email,
                     themeTextColor = themeTextColor,
-                    themeSurfaceColor = themeSurfaceColor
+                    themeSurfaceColor = themeSurfaceColor,
+                    keyboardController,
+                    focusManager
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 PasswordTextField(
@@ -97,7 +112,9 @@ fun SignInScreen(
                     value = passwordState,
                     icon = Icons.Default.Lock,
                     themeTextColor = themeTextColor,
-                    themeSurfaceColor = themeSurfaceColor
+                    themeSurfaceColor = themeSurfaceColor,
+                    keyboardController = keyboardController,
+                    focusManager = focusManager
                 )
                 Spacer(modifier = Modifier.heightIn(20.dp))
                 Buttoncomposable(
@@ -146,9 +163,7 @@ fun SignInScreen(
                 Spacer(modifier = Modifier.height(90.dp))
 
                 ClickableLogInTextComponent(
-                    themebackgroundColor = themeBackGroundColor,
                     themeTextColor = themeTextColor,
-                    themeSurfaceColor = themeSurfaceColor,
                     string = "Don't have an account? ",
                     clickableString = "SignUp",
                     onTextSelected = {

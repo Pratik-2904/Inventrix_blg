@@ -3,10 +3,7 @@ package com.pss_dev.inventrix_blg
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
-import androidx.navigation.compose.rememberNavController
-import com.pss_dev.inventrix_blg.navigation.Navigation
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.pss_dev.inventrix_blg.ui.theme.Inventrix_blgTheme
 import com.pss_dev.inventrix_blg.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,8 +15,8 @@ class MainActivity : ComponentActivity() {
 //        enableEdgeToEdge()
         setContent {
             Inventrix_blgTheme {
-                val authviewmodel : AuthViewModel by viewModels()
-                MyApp(authviewmodel)
+                val authViewModel : AuthViewModel = hiltViewModel()
+                MyApp(authViewModel)
             }
         }
     }
