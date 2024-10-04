@@ -63,10 +63,7 @@ class AuthViewModel @Inject constructor(private val userRepository: UserReposito
         context: Context
     ) {
         // Basic input validation
-        if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || password.isBlank()) {
-            Toast.makeText(context, "Please fill in all required fields", Toast.LENGTH_SHORT).show()
-            return
-        }
+
         val user = User(
             username = email,
             password = password,
@@ -81,10 +78,11 @@ class AuthViewModel @Inject constructor(private val userRepository: UserReposito
             } catch (e: Exception) {
                 Toast.makeText(context, "An error occurred: ${e.message}", Toast.LENGTH_SHORT)
                     .show()
+
             }
         }
     }
-//    private var _username = "Pratik"
+//    private var _username = "aditya"
 //    private var _password = "123456"
 //
 //    private var _isLoggedIn = mutableStateOf(false)
@@ -92,7 +90,6 @@ class AuthViewModel @Inject constructor(private val userRepository: UserReposito
 //    fun validateCredentials(username: String, password: String): Boolean {
 //        return username == _username && password == _password
 //    }
-//
 //    fun login() {
 //        _isLoggedIn.value = true
 //    }

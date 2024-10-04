@@ -337,7 +337,8 @@ fun DividerTextField(
 
 @Composable
 fun GoogleSignInButton(
-    themebackgroundColor: Color, themeTextColor: Color, themeSurfaceColor: Color
+    themebackgroundColor: Color, themeTextColor: Color, themeSurfaceColor: Color ,
+//    OneTap -> Unit = {},
 ) {
     Row(
         modifier = Modifier
@@ -345,7 +346,7 @@ fun GoogleSignInButton(
             .heightIn(20.dp),
         horizontalArrangement = Arrangement.Center
     ) {
-        IconButton(onClick = { /*TODO Addition of One click Sign In Logic*/ }) {
+        IconButton(onClick = {/*TODO Addition of One click Sign In Logic*/ }) {
             Image(
                 modifier = Modifier.aspectRatio(1f),
                 painter = painterResource(id = R.drawable.icon_google),

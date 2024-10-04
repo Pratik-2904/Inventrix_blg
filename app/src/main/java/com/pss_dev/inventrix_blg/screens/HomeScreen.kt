@@ -18,8 +18,11 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -41,6 +44,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.pss_dev.inventrix_blg.R
 import com.pss_dev.inventrix_blg.viewModel.AuthViewModel
@@ -108,9 +112,13 @@ fun HomeScreen(
                     // Content of the bottom sheet
                     CompanyInfoBox()
                 }
-            }
+            } //bottom sheet ended here
+           CardIcons()
         }
+
+
     }
+
 }
 
 @Preview
@@ -152,7 +160,9 @@ fun CompanyInfoBox(modifier: Modifier = Modifier, title: String? = null) {
 
         }
     }
+
 }
+
 
 @Composable
 fun RoundedImage(image: Painter, rowHeight: Int) {
@@ -170,5 +180,52 @@ fun RoundedImage(image: Painter, rowHeight: Int) {
                 .size(rowHeight.dp) // Makes the image size equal to the row height
                 .clip(CircleShape) // Clips the image into a circle
         )
+    }
+}
+//
+
+@Composable
+fun CardIcons() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 30.dp)
+            .background(Color.Gray),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+
+    ) {
+        Text("aditya vedpathak ")
+        Column(
+            modifier = Modifier.fillMaxWidth(0.8f), verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Home,
+                    contentDescription = "Home Icon",
+                    modifier = Modifier.size(50.dp).padding(10.dp)
+                )
+                Icon(
+                    imageVector = Icons.Filled.Home,
+                    contentDescription = "Home Icon",
+                    modifier = Modifier.size(50.dp).padding(10.dp) // Set size as needed
+                )
+                Icon(
+                    imageVector = Icons.Filled.Home,
+                    contentDescription = "Home Icon",
+                    modifier = Modifier.size(50.dp).padding(10.dp) // Set size as needed
+                )
+                Icon(
+                    imageVector = Icons.Filled.Home,
+                    contentDescription = "Home Icon",
+                    modifier = Modifier.size(50.dp).padding(start = 10.dp) // Set size as needed
+                )
+            }
+
+
+        }
     }
 }

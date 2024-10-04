@@ -12,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.stockinvoice.screens.signInScreen.SignInScreen
+//import com.pss_dev.inventrix_blg.GoogleSignIn.Onetapprofile
 import com.pss_dev.inventrix_blg.screens.HomeScreen
 import com.pss_dev.inventrix_blg.screens.SignUpScreen
 import com.pss_dev.inventrix_blg.screens.SplashScreen
@@ -52,6 +53,10 @@ fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel = 
         composable(route = Screens.terms.route) {
             //Todo Add Terms Screen
         }
+        composable(route = Screens.ot1.route) {
+//Onetapprofile(navController)
+        }
+
     }
 
 }

@@ -13,7 +13,8 @@ sealed class Screens(
     object login : Screens("Login", "login")
     object register : Screens("Register", "register")
     object terms : Screens("Terms", "terms")
-
+    object ot1 : Screens("ot1","ot1")
+    object ot2 : Screens("ot2","ot2")
 
 //    object profile: routes("profile")
 //    object search: routes("search")

@@ -5,6 +5,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("androidx.room")
     id("com.google.devtools.ksp")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -69,6 +70,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -87,7 +89,7 @@ dependencies {
     implementation(libs.hilt.android)
 //    ksp("com.google.dagger:hilt-compiler:2.52")
     ksp(libs.hilt.android.compiler)
-
+    implementation(libs.androidx.hilt.navigation.compose)
     //lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
@@ -100,14 +102,24 @@ dependencies {
 
     //kotlin extensions and Coroutine Support
     implementation(libs.androidx.room.ktx)
-
+    implementation ("androidx.activity:activity-ktx:1.9.2")
     // Hilt ViewModel dependencies
 //    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
 
     // Hilt for Jetpack Compose
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
-    //animations
+//for google sign in
+    implementation ("com.google.android.gms:play-services-auth:21.2.0")
+    //network calls
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    implementation ("androidx.concurrent:concurrent-futures-ktx:1.2.0")
+    implementation("io.coil-kt:coil-compose:2.7.0")
+
+
 
 }
 
