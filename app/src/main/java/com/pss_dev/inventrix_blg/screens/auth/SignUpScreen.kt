@@ -1,4 +1,4 @@
-package com.pss_dev.inventrix_blg.screens
+package com.pss_dev.inventrix_blg.screens.auth
 
 import android.app.Activity
 import android.widget.Toast
