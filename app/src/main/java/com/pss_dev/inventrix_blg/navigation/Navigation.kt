@@ -1,24 +1,29 @@
 package com.pss_dev.inventrix_blg.navigation
 
-import android.transition.Transition
 import android.util.Log
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.stockinvoice.screens.signInScreen.SignInScreen
-import com.pss_dev.inventrix_blg.screens.HomeScreen
-import com.pss_dev.inventrix_blg.screens.SignUpScreen
+import com.pss_dev.inventrix_blg.screens.NavbarScreen.BillScreen
+import com.pss_dev.inventrix_blg.screens.NavbarScreen.HomeScreen
+import com.pss_dev.inventrix_blg.screens.NavbarScreen.MoreScreen
+import com.pss_dev.inventrix_blg.screens.NavbarScreen.PartiesScreen
+import com.pss_dev.inventrix_blg.screens.NavbarScreen.ProductsScreen
 import com.pss_dev.inventrix_blg.screens.SplashScreen
+import com.pss_dev.inventrix_blg.screens.auth.SignUpScreen
 import com.pss_dev.inventrix_blg.viewModel.AuthViewModel
 
 @Composable
-fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel = hiltViewModel() ) {
+fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel = hiltViewModel()) {
     val startDestination = Screens.splash.route
 
     NavHost(navController = navController, startDestination = startDestination) {
@@ -26,28 +31,113 @@ fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel = 
             exitTransition = {
                 slideOutHorizontally() + fadeOut()
             }) {
-            SplashScreen(navController,authviewmodel)
+            SplashScreen(navController, authviewmodel)
         }
-        composable(route = Screens.home.route) {
-            HomeScreen(authviewmodel)
+        composable(route = Screens.home.route,
+            enterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            exitTransition = {
+                fadeOut(animationSpec = tween(300))
+            },
+            popEnterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            popExitTransition = {
+                fadeOut(animationSpec = tween(300))
+            }) {
+            HomeScreen(navController = navController, authViewModel = authviewmodel)
         }
-        composable(route = Screens.bills.route) {
-            //Todo Add Bills Screen
+        composable(route = Screens.bills.route,
+            enterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            exitTransition = {
+                fadeOut(animationSpec = tween(300))
+            },
+            popEnterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            popExitTransition = {
+                fadeOut(animationSpec = tween(300))
+            }
+        ) {
+            BillScreen(navController = navController)
         }
-        composable(route = Screens.products.route) {
-            //Todo Add Products Screen
+        composable(route = Screens.products.route,
+            enterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            exitTransition = {
+                fadeOut(animationSpec = tween(300))
+            },
+            popEnterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            popExitTransition = {
+                fadeOut(animationSpec = tween(300))
+            }) {
+            ProductsScreen(navController)
         }
-        composable(route = Screens.parties.route) {
-            //Todo Add Parties Screen
+        composable(route = Screens.parties.route,
+            enterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            exitTransition = {
+                fadeOut(animationSpec = tween(300))
+            },
+            popEnterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            popExitTransition = {
+                fadeOut(animationSpec = tween(300))
+            }) {
+            PartiesScreen(navController)
         }
-        composable(route = Screens.more.route) {
-            //Todo Add More Screen
+        composable(route = Screens.more.route,
+            enterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            exitTransition = {
+                fadeOut(animationSpec = tween(300))
+            },
+            popEnterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            popExitTransition = {
+                fadeOut(animationSpec = tween(300))
+            }) {
+            MoreScreen(navController)
         }
-        composable(route = Screens.login.route) {
-            SignInScreen(navController,authviewmodel)
+        composable(route = Screens.login.route,
+            enterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            exitTransition = {
+                fadeOut(animationSpec = tween(300))
+            },
+            popEnterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            popExitTransition = {
+                fadeOut(animationSpec = tween(300))
+            }) {
+            SignInScreen(navController, authviewmodel)
         }
-        composable(route = Screens.register.route) {
-            SignUpScreen(navController,authviewmodel)
+        composable(route = Screens.register.route,
+            enterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            exitTransition = {
+                fadeOut(animationSpec = tween(300))
+            },
+            popEnterTransition = {
+                fadeIn(animationSpec = tween(300))
+            },
+            popExitTransition = {
+                fadeOut(animationSpec = tween(300))
+            }) {
+            SignUpScreen(navController, authviewmodel)
         }
         composable(route = Screens.terms.route) {
             //Todo Add Terms Screen
@@ -56,7 +146,10 @@ fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel = 
 
 }
 
-fun NavController.safeNavigate(route: String) {
+fun NavController.safeNavigate(
+    route: String,
+    builder: NavOptionsBuilder.() -> Unit = {}
+) {
     val currentRoute = currentDestination?.route
     Log.d("NavController", "Current Route: $currentRoute, Target Route: $route")
 

@@ -1,4 +1,4 @@
-package com.pss_dev.inventrix_blg.screens
+package com.pss_dev.inventrix_blg.screens.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures

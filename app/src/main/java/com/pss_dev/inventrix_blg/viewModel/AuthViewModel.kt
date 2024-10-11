@@ -6,9 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pss_dev.inventrix_blg.Localdb.UserRepository
-import com.pss_dev.inventrix_blg.data.AccessLevel
-import com.pss_dev.inventrix_blg.data.User
+import com.pss_dev.inventrix_blg.data.Localdb.UserRepository
+import com.pss_dev.inventrix_blg.data.model.AccessLevel
+import com.pss_dev.inventrix_blg.data.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,19 +16,35 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
+    //User
     private var _loggedInUser: MutableLiveData<User?> = MutableLiveData()
-
     val loggedInUser: LiveData<User?> get() = _loggedInUser
+
+    //boolean user logged in or not
+    private val _isLoggedIn = MutableLiveData<Boolean>(false)
+    val isLoggedIn: LiveData<Boolean> get() = _isLoggedIn
+
 
     val loggedInUsername: String?
         get() = _loggedInUser.value?.username
 
-    fun checkIfUserIsLoggedIn(): Boolean {
+    fun checkIfUserIsLoggedIn() {
         viewModelScope.launch {
             _loggedInUser.value = userRepository.getLoggedInUser()
+            _isLoggedIn.value = _loggedInUser.value != null
         }
-        return _loggedInUser.value != null
     }
+
+
+//    fun checkIfUserIsLoggedIn(): Boolean {
+//        var isLoggedIn = false
+//        viewModelScope.launch {
+//            _loggedInUser.value = userRepository.getLoggedInUser()
+//            isLoggedIn = _loggedInUser.value != null
+//        }
+//        return isLoggedIn // Note: This will not immediately return the correct status due to the async nature of coroutine
+//    }
+
 
     fun authenticate(username: String, password: String) {
         viewModelScope.launch {
@@ -84,24 +100,4 @@ class AuthViewModel @Inject constructor(private val userRepository: UserReposito
             }
         }
     }
-//    private var _username = "Pratik"
-//    private var _password = "123456"
-//
-//    private var _isLoggedIn = mutableStateOf(false)
-//
-//    fun validateCredentials(username: String, password: String): Boolean {
-//        return username == _username && password == _password
-//    }
-//
-//    fun login() {
-//        _isLoggedIn.value = true
-//    }
-//
-//    fun isLoggedIn(): Boolean {
-//        return _isLoggedIn.value
-//    }
-//
-//    fun getusername(): String {
-//        return _username
-//    }
 }

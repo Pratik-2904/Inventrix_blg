@@ -1,8 +1,7 @@
-package com.pss_dev.inventrix_blg.data
+package com.pss_dev.inventrix_blg.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 
 @Entity(tableName = "users")
 data class User(

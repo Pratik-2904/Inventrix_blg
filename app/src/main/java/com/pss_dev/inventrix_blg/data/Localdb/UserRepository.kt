@@ -1,8 +1,7 @@
-package com.pss_dev.inventrix_blg.Localdb
+package com.pss_dev.inventrix_blg.data.Localdb
 
-import com.pss_dev.inventrix_blg.Localdb.dao.UserDao
-import com.pss_dev.inventrix_blg.data.User
-import kotlinx.coroutines.flow.Flow
+import com.pss_dev.inventrix_blg.data.Localdb.dao.UserDao
+import com.pss_dev.inventrix_blg.data.model.User
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(private val userdao: UserDao) {

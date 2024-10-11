@@ -13,9 +13,4 @@ sealed class Screens(
     object login : Screens("Login", "login")
     object register : Screens("Register", "register")
     object terms : Screens("Terms", "terms")
-
-
-//    object profile: routes("profile")
-//    object search: routes("search")
-//    object bottomNav: routes("bottomNav")
 }

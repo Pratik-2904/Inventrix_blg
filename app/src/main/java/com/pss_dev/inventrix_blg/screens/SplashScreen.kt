@@ -12,6 +12,8 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,7 +21,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -33,9 +34,11 @@ fun SplashScreen(
     authViewModel: AuthViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
-    val isLoggedIn = authViewModel.checkIfUserIsLoggedIn()
+    val isLoggedIn by authViewModel.isLoggedIn.observeAsState(initial = false)
 
     LaunchedEffect(Unit) {
+        // Wait for the login check to complete
+        authViewModel.checkIfUserIsLoggedIn() // Start the check
         delay(500L) // Short delay for splash effect
         if (isLoggedIn) {
             navController.navigate("home") {
@@ -82,7 +85,9 @@ fun SplashScreen(
 //                    color = MaterialTheme.colorScheme.onBackground,
 //                    textAlign = TextAlign.Center
 //                ),
-                modifier = Modifier.padding(top = 16.dp).align(Alignment.CenterHorizontally)
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .align(Alignment.CenterHorizontally)
             )
         }
     }
