@@ -1,4 +1,4 @@
-//package com.pss_dev.inventrix_blg.screens
+package com.pss_dev.inventrix_blg.screens
 //
 //import androidx.compose.foundation.ExperimentalFoundationApi
 //import androidx.compose.foundation.clickable
