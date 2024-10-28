@@ -1,10 +1,6 @@
 package com.pss_dev.inventrix_blg.screens.auth
 
-import android.app.Activity
 import android.widget.Toast
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.IntentSenderRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -30,7 +26,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusManager
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
@@ -41,10 +36,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
-import com.google.android.gms.auth.api.identity.Identity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.common.api.ApiException
 import com.pss_dev.inventrix_blg.R
 import com.pss_dev.inventrix_blg.navigation.Screens
 import com.pss_dev.inventrix_blg.viewModel.AuthViewModel
@@ -65,12 +56,10 @@ fun SignUpScreen(
     val context = LocalContext.current
 
 
-
     val firstNameState = rememberSaveable { mutableStateOf("") }
     val lastNameState = rememberSaveable { mutableStateOf("") }
     val emailState = rememberSaveable { mutableStateOf("") }
     val passwordState = rememberSaveable { mutableStateOf("") }
-
 
 
     val themeBackGroundColor = MaterialTheme.colorScheme.background
@@ -148,20 +137,21 @@ fun SignUpScreen(
                     themeTextColor = themeTextColor,
                     themeSurfaceColor = themeSurfaceColor,
                     onClick = {
-                      if(firstNameState.value.isBlank() ||  lastNameState.value.isBlank() || emailState.value.isBlank() ||   passwordState.value.isBlank()){
-                          Toast.makeText(context ,"Fields cant be empty",Toast.LENGTH_SHORT).show()
+                        if (firstNameState.value.isBlank() || lastNameState.value.isBlank() || emailState.value.isBlank() || passwordState.value.isBlank()) {
+                            Toast.makeText(context, "Fields cant be empty", Toast.LENGTH_SHORT)
+                                .show()
 
-                      }else {
+                        } else {
 
-                          authViewModel.signup(
-                              firstNameState.value,
-                              lastNameState.value,
-                              emailState.value,
-                              passwordState.value,
-                              context
-                          )
-                          navController.navigate(route = Screens.home.route)
-                      }
+                            authViewModel.signup(
+                                firstNameState.value,
+                                lastNameState.value,
+                                emailState.value,
+                                passwordState.value,
+                                context
+                            )
+                            navController.navigate(route = Screens.home.route)
+                        }
                     }
                 )
 

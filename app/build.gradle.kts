@@ -86,14 +86,12 @@ dependencies {
 
     //dagger hilt
     implementation(libs.hilt.android)
-//    ksp("com.google.dagger:hilt-compiler:2.52")
     ksp(libs.hilt.android.compiler)
 
     //lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-//    ksp("androidx.hilt:hilt-compiler:1.2.0")
 
     //local database
     implementation(libs.androidx.room.runtime)
