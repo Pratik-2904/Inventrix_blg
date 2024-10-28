@@ -79,6 +79,7 @@ fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel = 
             }) {
             ProductsScreen(navController)
         }
+
         composable(route = Screens.parties.route,
             enterTransition = {
                 fadeIn(animationSpec = tween(300))
@@ -124,6 +125,9 @@ fun Navigation(navController: NavHostController, authviewmodel: AuthViewModel = 
             }) {
             SignInScreen(navController, authviewmodel)
         }
+
+//        composable("add_product") { AddProductScreen(navController) }
+
         composable(route = Screens.register.route,
             enterTransition = {
                 fadeIn(animationSpec = tween(300))
