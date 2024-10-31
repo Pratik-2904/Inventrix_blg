@@ -1,8 +1,8 @@
-package com.pss_dev.inventrix_blg.data.Localdb.database
+package com.pss_dev.inventrix_blg.data.localDb.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.pss_dev.inventrix_blg.data.Localdb.dao.UserDao
+import com.pss_dev.inventrix_blg.data.localDb.dao.UserDao
 import com.pss_dev.inventrix_blg.data.model.User
 
 @Database(

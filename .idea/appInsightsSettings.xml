@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.pss_dev.inventrix_blg" />
-                  <option name="mobileSdkAppId" value="1:271658180644:android:49f6fc6a1adb86c23478b1" />
-                  <option name="projectId" value="inventrix-95a21" />
-                  <option name="projectNumber" value="271658180644" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

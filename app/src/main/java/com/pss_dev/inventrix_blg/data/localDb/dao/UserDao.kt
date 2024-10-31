@@ -1,4 +1,4 @@
-package com.pss_dev.inventrix_blg.data.Localdb.dao
+package com.pss_dev.inventrix_blg.data.localDb.dao
 
 import androidx.room.Dao
 import androidx.room.Delete

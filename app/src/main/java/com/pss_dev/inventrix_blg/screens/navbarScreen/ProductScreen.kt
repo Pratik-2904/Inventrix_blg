@@ -1,4 +1,4 @@
-package com.pss_dev.inventrix_blg.screens.NavbarScreen
+package com.pss_dev.inventrix_blg.screens.navbarScreen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

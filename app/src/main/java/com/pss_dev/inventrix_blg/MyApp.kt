@@ -8,5 +8,5 @@ import com.pss_dev.inventrix_blg.viewModel.AuthViewModel
 @Composable
 fun MyApp(authViewModel: AuthViewModel) {
     val navController = rememberNavController()
-    Navigation(navController = navController, authviewmodel = authViewModel)
+    Navigation(navController = navController, authViewModel = authViewModel)
 }

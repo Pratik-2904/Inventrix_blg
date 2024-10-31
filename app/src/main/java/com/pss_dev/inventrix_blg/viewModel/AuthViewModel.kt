@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pss_dev.inventrix_blg.data.Localdb.UserRepository
+import com.pss_dev.inventrix_blg.data.localDb.UserRepository
 import com.pss_dev.inventrix_blg.data.model.AccessLevel
 import com.pss_dev.inventrix_blg.data.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -29,7 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pss_dev.inventrix_blg.data.model.ui.BottomNavItem
 import com.pss_dev.inventrix_blg.navigation.safeNavigate
-import com.pss_dev.inventrix_blg.screens.NavbarScreen.HomeTopBar
+import com.pss_dev.inventrix_blg.screens.navbarScreen.HomeTopBar
 import com.pss_dev.inventrix_blg.viewModel.DashboardViewModel
 
 @Composable

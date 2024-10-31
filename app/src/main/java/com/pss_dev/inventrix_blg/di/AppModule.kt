@@ -2,9 +2,9 @@ package com.pss_dev.inventrix_blg.di
 
 import android.content.Context
 import androidx.room.Room
-import com.pss_dev.inventrix_blg.data.Localdb.UserRepository
-import com.pss_dev.inventrix_blg.data.Localdb.dao.UserDao
-import com.pss_dev.inventrix_blg.data.Localdb.database.UserDataBase
+import com.pss_dev.inventrix_blg.data.localDb.UserRepository
+import com.pss_dev.inventrix_blg.data.localDb.dao.UserDao
+import com.pss_dev.inventrix_blg.data.localDb.database.UserDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,7 +28,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideDao(userDataBase: UserDataBase): UserDao {
-        return  userDataBase.userdao()
+        return userDataBase.userdao()
     }
 
     @Provides

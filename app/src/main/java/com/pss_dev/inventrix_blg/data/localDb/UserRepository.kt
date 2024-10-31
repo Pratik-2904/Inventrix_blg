@@ -1,6 +1,6 @@
-package com.pss_dev.inventrix_blg.data.Localdb
+package com.pss_dev.inventrix_blg.data.localDb
 
-import com.pss_dev.inventrix_blg.data.Localdb.dao.UserDao
+import com.pss_dev.inventrix_blg.data.localDb.dao.UserDao
 import com.pss_dev.inventrix_blg.data.model.User
 import javax.inject.Inject
 
